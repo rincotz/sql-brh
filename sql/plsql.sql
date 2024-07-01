@@ -42,3 +42,16 @@ BEGIN
     WHERE ID_PROJETO = p_ID_PROJETO;
     RETURN v_DATA_FIM;
 END;
+
+-- Validar novo projeto
+CREATE OR REPLACE PROCEDURE brh.insere_projeto (
+    p_NOME_PROJETO IN VARCHAR2,
+    p_RESPONSAVEL IN VARCHAR2
+) IS
+BEGIN
+    IF p_NOME_PROJETO IS NULL OR LENGTH(p_nome_projeto) < 2 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Nome de projeto inválido! Deve ter dois ou mais caracteres.');
+    END IF;
+    INSERT INTO brh.projeto (ID_PROJETO, p_NOME_PROJETO, RESPONSAVEL)
+    VALUES (brh.seq_projeto.NEXTVAL, p_NOME_PROJETO, p_RESPONSAVEL;
+END;
